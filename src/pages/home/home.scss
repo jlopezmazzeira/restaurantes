@@ -1,0 +1,35 @@
+page-home {
+  ion-card{
+    height: 300px;
+    overflow: hidden;
+    text-align: center;
+    position: relative;
+  }
+
+  .nombre{
+    position: absolute;
+    top: 36%;
+    font-size: 2.5em;
+    width: 100%;
+    font-weight: bold;
+    color: #FFF;
+  }
+
+  .rating{
+    position: absolute;
+    top: 52%;
+    font-size: 1.0em;
+    width: 100%;
+    font-weight: bold;
+  }
+
+  rating{
+    font-size: 2em;
+    color: orange;
+  }
+
+  rating ul{
+    padding-left: 0px;
+    margin: 0px;
+  }
+}

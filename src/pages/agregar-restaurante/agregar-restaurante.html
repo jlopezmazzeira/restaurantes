@@ -1,0 +1,70 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Agregar Restaurante</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <form #formulario="ngForm" (ngSubmit)="agregarRestaurante(formulario)">
+    <ion-grid>
+      <ion-row>
+        <ion-col col-8>
+          <ion-item>
+            <ion-label floating>Nombre</ion-label>
+            <ion-input type="text" name="nombre" [(ngModel)]="nombre" required></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col col-4>
+          <ion-row>
+            <button ion-button block (click)="tomarFoto()" type="button">
+              <ion-icon name="camera"></ion-icon>
+            </button>
+          </ion-row>
+          <ion-row>
+            <button ion-button block (click)="localizar()" type="button">
+              <ion-icon name="locate"></ion-icon>
+            </button>
+          </ion-row>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-grid>
+      <ion-row *ngIf="ubicacionLista">
+        <ion-col>
+          <agm-map [latitude]="ubicacion.lat"
+                   [longitude]="ubicacion.lng"
+                   [zoom]="16"
+                   [streetViewControl]="false"
+                   [disableDefaultUI]="true">
+            <agm-marker [latitude]="ubicacion.lat" [longitude]="ubicacion.lng"></agm-marker>
+          </agm-map>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-slides>
+          <ion-slide *ngFor="let imagen of imagenes">
+            <img [src]="imagen">
+          </ion-slide>
+        </ion-slides>
+      </ion-row>
+      <ion-row text-center>
+        <ion-col>
+          <rating name="rating" [(ngModel)]="rating">
+        </rating>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <button ion-button block type="submit" [disabled]="!formulario.valid ||
+                                                             !ubicacionLista ||
+                                                             imagenes.length <= 0">
+            Agregar Restaurante
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>
